@@ -1,5 +1,6 @@
 import random
 import copy
+from typing import Union
 
 
 # ! Списки
@@ -464,10 +465,10 @@ class Graphs:
         self.connections = connections
 
 
-# ! Нейросети
+""" # ! Нейросети
 # ? Нейрон
 class Neuron:
-    def __init__(self, weight: list = None, bias: float or int = 0, mutation_chance: int = 0, mutation_step: int = 0,
+    def __init__(self, weight: list = None, bias: Union[float, int] = 0, mutation_chance: int = 0, mutation_step: int = 0,
                  neuron=None):
         if neuron is None:
             if weight is None:
@@ -527,7 +528,7 @@ class Neuron:
 # ? Нейроная сеть
 class Neural_Network:
     def __init__(self, number_of_inputs: int = 2, hidden_layers_count: int = 0, hidden_layer_sizes: list = None,
-                 output_layer_size: int = 1, tuning_for_Neuron: list = None, neural_network=None):
+                 output_layer_size: int = 1, tuning_for_Neuron: list = None, neural_network = None):
         if neural_network is None:
             if tuning_for_Neuron is None:
                 tuning_for_Neuron = [1, 0, 0]
@@ -805,3 +806,4 @@ class Neural_Network_P:
         for layer in range(len(self.layers)):
             for n in range(len(self.layers[layer])):
                 self.layers[layer][n].mutation()
+ """
