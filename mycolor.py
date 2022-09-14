@@ -42,7 +42,11 @@ adt_style = {
 }
 
 
-def setst(text: str, style: Union[tuple, list, int] = (37), clear: bool = True) -> str:
+def setst(
+    text: str,
+    style: Union[tuple, list, int] = (37),
+    clear: bool = True
+) -> str:
     '''Параметры:
     ----------
     - text  - любая строка

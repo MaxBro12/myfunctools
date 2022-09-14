@@ -5,7 +5,8 @@ from typing import Union
 
 # ! Списки
 # ? Перекрутка списка
-def list_rewind(list_of_val: list, rewind_val: int) -> list:
+def list_rewind(list_of_val: list, rewind_val: int = 1) -> list:
+    '''Прокручивает список на значение rewind_val'''
     return list_of_val[rewind_val:] + list_of_val[:rewind_val]
 
 
