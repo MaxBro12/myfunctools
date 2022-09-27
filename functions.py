@@ -12,26 +12,31 @@ def list_rewind(list_of_val: list, rewind_val: int = 1) -> list:
 
 # ? Поворот матрицы
 def rotate_matrix(m):
+    '''Поворот матрицы'''
     return [[m[j][i] for j in range(len(m))] for i in range(len(m[0]) - 1, -1, -1)]
 
 
 # ? Возврат значения в пределах максимального или минимального
-def clamp(value, Min, Max):
+def clamp(value, Min, Max) -> Union[int, float]:
+    '''Возвращает значение в пределах максимального или минимального значения.'''
     return max(min(value, Max), Min)
 
 
 # ? Возвращает значение из массива, на основе порядкого индекса
 def massive_value_backer(massive, index: int):
+    '''Возвращает значение из массива, на основе порядкого индекса'''
     return massive[index // 3][index % 3]
 
 
 # ? Возвращает индексы из массива, на основе порядкого индекса
 def massive_index_backer(massive, index: int):
+    '''Возвращает значение индексов, на основе порядкого индекса'''
     return index // len(massive), index % massive[0]
 
 
 # ? Возвращает индекс самого большого значения в списке
 def max_value_index(list_of_val: list):
+    '''Возвращает индекс самого большого значения в списке'''
     j = index = 0
     for i in range(len(list_of_val)):
         if j < list_of_val[i]:
@@ -42,6 +47,7 @@ def max_value_index(list_of_val: list):
 
 # ? Возвращает индекс самого маленького значения в списке
 def min_value_index(list_of_val: list):
+    '''Возвращает индекс самого маленького значения в списке'''
     j = index = 0
     for i in range(len(list_of_val)):
         if j > list_of_val[i]:
@@ -51,7 +57,8 @@ def min_value_index(list_of_val: list):
 
 
 # ? Перевод массива в список
-def massive_to_list(massive):
+def massive_to_list(massive) -> list:
+    '''Переводит массив в список'''
     answer = []
     for i in massive:
         for j in i:
@@ -61,6 +68,7 @@ def massive_to_list(massive):
 
 # ? Перевод списка в массив
 def list_to_massive(list_of_val: list, x: int, y: int):
+    '''Перевод списка в массив'''
     answer = []
     for i in range(1, y + 1):
         ans_list = list_of_val[i * x - x:i * x]
@@ -71,6 +79,7 @@ def list_to_massive(list_of_val: list, x: int, y: int):
 # ! Методы поиска
 # ? Бинарный поиск совпадений 
 def matches_b(list_of_val: list):
+    '''Бинарный поиск совпадений в списке. Возвращает да, если совпадения есть'''
     a = set(list_of_val)
     if len(a) < len(list_of_val):
         return False
@@ -79,6 +88,7 @@ def matches_b(list_of_val: list):
 
 # ? Полноценный поиск совпадений в списке
 def matches_f(list_of_val: list):
+    '''Возвращает список всех совпадений в заданном списке'''
     list_of_matches = []
     for i in list_of_val:
         if i in list_of_matches: continue
@@ -91,6 +101,7 @@ def matches_f(list_of_val: list):
 # ! Векторы
 # ? Вектор с 2мя координатами
 class Vec2:
+    '''Удобный класс для работы с векторами'''
     def __init__(self, x='0', y=0):
         if type(x) == tuple or type(x) == list:
             self.x = x[0]
@@ -148,6 +159,7 @@ class Vec2:
 
 # ? Вектор с 3мя координатами
 class Vec3:
+    '''Удобный класс для работы с векторами'''
     def __init__(self, x='0', y=0, z=0):
         if type(x) == tuple or type(x) == list:
             self.x = x[0]
@@ -208,34 +220,40 @@ class Vec3:
 
 
 # ? Функция расчета нормализированного вектора 2
-def norm2(vec2):
-    m = length3(vec2)
+def norm2(vec2: Vec2) -> tuple:
+    '''Возвращает нормализованный вектор'''
+    m = length2(vec2)
     return vec2.x / m, vec2.y / m
 
 
 # ? Функция расчета нормализированного вектора 3
-def norm3(vec3):
+def norm3(vec3: Vec3) -> tuple:
+    '''Возвращает нормализованный вектор'''
     m = length3(vec3)
     return vec3.x / m, vec3.y / m, vec3.z / m
 
 
 # ? Функция расчета длинны вектора 2
-def length2(vec2):
+def length2(vec2: Vec2) -> Union[float, int]:
+    '''Возвращает длинну вектора'''
     return (vec2.x**2 + vec2.y**2)**0.5
 
 
 # ? Функция расчета длинны вектора 3
-def length3(vec3):
+def length3(vec3: Vec3) -> Union[float, int]:
+    '''Возвращает длинну вектора'''
     return (vec3.x**2 + vec3.y**2 + vec3.z**2)**0.5
 
 
 # ? Функция расчета сколярного произведения вектора 2
-def dot2(a, b):
+def dot2(a: Vec2, b: Vec2) -> Union[float, int]:
+    '''Возвращает скалярное произведение векторов'''
     return a.x * b.x + a.y * b.y
 
 
 # ? Функция расчета сколярного произведения вектора 3
-def dot3(a, b):
+def dot3(a: Vec3, b: Vec3) -> Union[float, int]:
+    '''Возвращает скалярное произведение векторов'''
     return a.x * b.x + a.y * b.y + a.z * b.z
 
 
