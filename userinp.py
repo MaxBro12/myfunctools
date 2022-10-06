@@ -3,6 +3,7 @@ from types import NoneType
 
 class UserInp:
     def __init__(self):
+        self.bug_rep = True
         self.progrun = False
         self.commands = {
             'help': self.help,
@@ -13,12 +14,15 @@ class UserInp:
     def run(self):
         self.progrun = True
 
-        # ? Приветственное сообщение
-        print('Use "help" command for more info')
+        # ! Вывод приветстренного сообщения
+        self.start_message()
 
         # ! Главный цикл программы
         while self.progrun:
             self.user_input()
+
+    def start_message(self):
+        print('Use "help" command for more info')
 
     def user_input(self):
         '''
@@ -35,8 +39,10 @@ class UserInp:
                     return command(addition)
                 else:
                     return command()
-            except TypeError:
+            except TypeError as error:
                 print('Wrong command!')
+                if self.bug_rep:
+                    print(error)
                 self.user_input()
         else:
             print(f'Unknown command: "{com}"')
@@ -48,13 +54,16 @@ class UserInp:
             for command in self.commands:
                 print(f'\t{command} - {self.commands[command].__doc__}')
         else:
-            try:
-                adt = str(adt[0])
-                if adt in self.commands:
-                    print(f'info about {adt}:\n\t{self.commands[adt].__doc__}')
-            except TypeError:
-                print(f'Unknown command {adt}, use "help" command')
-                self.user_input()
+            for com in adt:
+                try:
+                    adt = str(com)
+                    if adt in self.commands:
+                        print(f'Docs {adt}:\n\t{self.commands[adt].__doc__}')
+                    else:
+                        print(f'Unknown command {adt}, use "help" command')
+                except Exception as error:
+                    print(error)
+                    self.user_input()
 
     def stop(self):
         '''Stopping user input'''
