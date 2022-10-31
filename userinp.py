@@ -1,6 +1,3 @@
-from types import NoneType
-
-
 class UserInp:
     def __init__(self):
         self.bug_rep = True
@@ -23,6 +20,13 @@ class UserInp:
 
     def start_message(self):
         print('Use "help" command for more info')
+
+    def help_message(self):
+        print(
+            'Hi! This app is using my consol engine.\n' +
+            'Use "help list" (or "l") for show all commands' +
+            ' or "help and name of command" for info about command'
+        )
 
     def user_input(self):
         '''
@@ -48,19 +52,22 @@ class UserInp:
             print(f'Unknown command: "{com}"')
 
     def help(self, adt=None):
-        '''Помощь!'''
-        if isinstance(adt, NoneType):
+        '''Use 'help' command if '''
+        if adt is None:
+            self.help_message()
+        elif adt[0] in ('list', 'l'):
+            print(adt[0])
             print('List of all commands:')
             for command in self.commands:
                 print(f'\t{command} - {self.commands[command].__doc__}')
         else:
             for com in adt:
                 try:
-                    adt = str(com)
-                    if adt in self.commands:
-                        print(f'Docs {adt}:\n\t{self.commands[adt].__doc__}')
+                    com = str(com)
+                    if com in self.commands:
+                        print(f'Docs {com}:\n\t{self.commands[com].__doc__}')
                     else:
-                        print(f'Unknown command {adt}, use "help" command')
+                        print(f'Unknown command {com}, use "help l" command')
                 except Exception as error:
                     print(error)
                     self.user_input()
@@ -88,6 +95,8 @@ class UserInp:
     5) Названия команд не должны иметь в названии:
     - пробел
     - специальные символы, не все консоли могут их поддерживать
+    Рекомендуется для ввода использовать стандартные латинские символа,
+    вывод же может быть любым языком.
     '''
 
     def hello(self, args):
