@@ -41,7 +41,8 @@ def list_to_array(list_of_val: list, x: int, y: int):
 # ! Методы поиска
 # ? Бинарный поиск совпадений
 def matches_b(list_of_val: list):
-    '''Бинарный поиск совпадений в списке. Возвращает да, если совпадения есть'''
+    '''Бинарный поиск совпадений в списке.
+    Возвращает да, если совпадения есть'''
     a = set(list_of_val)
     if len(a) < len(list_of_val):
         return False
