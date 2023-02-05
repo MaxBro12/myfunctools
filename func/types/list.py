@@ -10,10 +10,10 @@ def list_rewind(list_of_val: list, rewind_val: int = 1) -> list:
 def max_value_index(list_of_val: list):
     '''Возвращает индекс самого большого значения в списке'''
     j = index = 0
-    for i in range(len(list_of_val)):
-        if j < list_of_val[i]:
-            j = list_of_val[i]
-            index = i
+    for in_i, i in enumerate(list_of_val):
+        if j < list_of_val[in_i]:
+            j = list_of_val[in_i]
+            index = in_i
     return index
 
 
@@ -21,10 +21,10 @@ def max_value_index(list_of_val: list):
 def min_value_index(list_of_val: list):
     '''Возвращает индекс самого маленького значения в списке'''
     j = index = 0
-    for i in range(len(list_of_val)):
-        if j > list_of_val[i]:
-            j = list_of_val[i]
-            index = i
+    for in_i, i in enumerate(list_of_val):
+        if j > list_of_val[in_i]:
+            j = list_of_val[in_i]
+            index = in_i
     return index
 
 
