@@ -3,6 +3,7 @@
 **RU**
 MyFunctools - это сборка всех моих полезных функций, методов и классов для ускорения разработки проектов. Я начинающий python разработчик! Этот проект создан больше в обучающих целях и будет дальше развиваться и дополняться.
 В этом проекте вы найдете:
+
 **ENG**
 MyFunctools is a collection of all my useful functions, methods and classes to speed up project development. I am a beginner python developer! This project was created more for educational purposes and will be further developed and supplemented.
 In this project you will find:
