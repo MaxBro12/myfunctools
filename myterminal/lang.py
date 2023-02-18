@@ -5,12 +5,14 @@ ru = {
     'helpl': 'Список всех команд:',
     'uncom': 'Неизвестная команда: ',
     'incorectm': 'Неправильная команда!',
+
     # Конфигурация
     'updateconf': 'Настройки были применены и сохранены.',
     'confs': 'Настройка конфигурации:',
     'confselect': 'Введите название параметра, который хотите изменить\n(чтобы пропустить нажмите enter)\n-> ',
     'confnew': 'Введите новое значение параметра:\n-> ',
     'confnotfound': 'Данного параметра не существует',
+
     # Команды
     'admin': 'для работы администратора',
     'help': 'вывод справки, используйте "help l" для вывода всех команд',
@@ -26,12 +28,14 @@ en = {
     'helpl': 'List of all comands:',
     'uncom': 'Unknown command: ',
     'incorectm': 'Wrong command!',
+
     # Config
     'updateconf': 'Settings have been applied and saved.',
     'confs': 'Configurate settings:',
     'confselect': 'Enter the name of the parameter you want to change\n(press enter to skip)\n-> ',
     'confnew': 'Enter a new parameter value:\n-> ',
     'confnotfound': 'This parameter does not exist',
+
     # Commands
     'admin': 'only for admin work',
     'help': 'help output, use "help l" to list all commands',

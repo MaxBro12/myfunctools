@@ -2,18 +2,26 @@ from .lang import (
     ru,
     en,
 )
-from .excep import (
+from .exceptions import (
     KillException,
 )
 from .eng_settings import (
     confirmation,
     rejection,
+    config_loc,
+    conf_separator,
+)
+from .tomlreader import (
+    read,
+    write,
 )
 
 
 emp_conf = {
-    'debug': True,
-    'lang': 'ru',
+    'MAIN': {
+        'debug': True,
+        'lang': 'ru',
+    }
 }
 
 
@@ -38,6 +46,7 @@ class UserInp:
             'hello': self.hello,
         }
 
+        # !!! ЭТОТ КОД СКОПИРОВАТЬ В ОБОЛОЧКУ КЛАССА !!!
         # ! Запуск в режиме 1 команды
         if args is not None:
             self.run_only_arg(args)
@@ -66,7 +75,7 @@ class UserInp:
                     return word()
             except TypeError as error:
                 print(self.lang['incorectm'])
-                if self.config['debug']:
+                if self.config['MAIN']['debug']:
                     print(error)
         else:
             print(f'{self.lang["uncom"]}"{word}"')
@@ -90,7 +99,7 @@ class UserInp:
                     return command()
             except TypeError as error:
                 print(self.lang['incorectm'])
-                if self.config['debug']:
+                if self.config['MAIN']['debug']:
                     print(error)
                 return self.user_input()
         else:
@@ -124,18 +133,16 @@ class UserInp:
             case 'update':
                 self.update_conf()
 
-    def update_conf(self):
+    def update_conf(self, config_log: str = config_loc):
         "Обновление корфигурации интерфейса и сохранение его настроек"
         # ! Сюда подключить метод сохранения конфигурации в файл
-        # ! Например использовать мой tomlpack
-        # ! Connect the method for saving the configuration to a file here
-        # ! For example use my tomlpack
+        write(self.config, config_loc)
         self.change_lang()
         print(self.lang['updateconf'])
 
     def change_lang(self):
         """Перезагружает языковой пакет"""
-        match self.config['lang']:
+        match self.config['MAIN']['lang']:
             case 'ru':
                 self.lang = ru
             case 'en':
@@ -145,22 +152,48 @@ class UserInp:
 
     def config_manage(self):
         """Режим изменения настроек"""
+        # ? Метод вывода конфига
+        def print_conf():
+            print(conf_separator)
+            for i in self.config:
+                if type(self.config[i]) == dict:
+                    print(i, ' ┐')
+                    for j in self.config[i]:
+                        print(
+                            f'{" " * len(self.config[i])}' +
+                            f'└ {j}{" " * (10 - len(str(j)))}-> ' +
+                            f'{self.config[i][j]}'
+                        )
+                else:
+                    print(
+                        f'{i}{" " * (10 - len(str(i)))}-> {self.config[i]}'
+                    )
+            print(conf_separator)
+
+        # ? Общение с пользователем
         print(self.lang['confs'])
-        for index, i in enumerate(self.config):
-            print(
-                f': [{index}] {i}{" " * (10 - len(str(i)))}-> {self.config[i]}'
-            )
+        print_conf()
         while True:
             param = input(self.lang['confselect'])
             if param == '':
                 break
             else:
-                if param in self.config.values():
+                param = param.split(' ')
+                if len(param) > 1:
+                    if param[0] in self.config.keys():
+                        if param[1] in self.config[param[0]].keys():
+                            new_val = input(self.lang['confnew'])
+                            self.config[param[0]][param[1]] = new_val
+                            print_conf()
+                elif param[0] in self.config.keys():
                     new_val = input(self.lang['confnew'])
-                    self.config[param] = new_val
+                    self.config[param[0]] = new_val
+                    print_conf()
                 else:
                     print(self.lang['confnotfound'])
                     continue
+
+        # ? Обновляем конфигурацию
         self.update_conf()
 
     # ? Сообщения помощи и старта
