@@ -22,7 +22,7 @@ def base_progress(
     lsim = '◼' * lprog
     rsim = '-' * rprog
     # print(f'proc: {proc}\nlp {lprog}\nrp {rprog}\nls {lsim}\nrs {rsim}')
-    rstr = str(f'[{lsim}{rsim}]')
+    rstr = str(f'[{lsim}{rsim}]\r')
 
     if returnstr:
         return rstr

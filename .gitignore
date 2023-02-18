@@ -1,8 +1,13 @@
 .idea
 .vscode
 .mypy_cache
+
 __pycache__
 
+test
 test.*
 *.exe
 beta.py
+
+patch.txt
+*.bat

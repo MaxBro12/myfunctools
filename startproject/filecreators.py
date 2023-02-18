@@ -1,35 +1,5 @@
-from os import (
-    mkdir,
-    getcwd,
-)
-from os.path import (
-    join,
-    exists,
-)
-from sys import (
-    platform,
-)
-
-
-inner_folders = (
-    'admin',
-    'app',
-    'code',
-    'source',
-)
-
-
-# ! Шаблоны файлов
-gitignore_file = """.vscode\n.idea\n\n__pycache__\n
-\n*.bat\npatch.txt\n\ntest.*\n"""
-patch_file = '[Заголовок]\n\n[подпись]'
-git_to_server_f_bat = ''
-
-
-def create_gts_bat(way: str):
-    msg = f"""cd {way}\ngit add *\n
-    git commit -F patch.txt\ngit push origin master"""
-    return str(msg)
+from os import mkdir
+from os.path import join, exists
 
 
 def create_folder(name: str, way: str = None) -> bool:
@@ -104,55 +74,3 @@ def create_file(
     except ValueError:
         print(f'Попытка создать файл без расширения: {way}')
         return False
-
-
-def get_proj_name():
-    print(
-        'Введите путь, где развернуть проект?\n' +
-        '(папка проекта создается автоматически следуя его названию)\n' +
-        'Если хотите развернуть проект тут:' +
-        getcwd()
-    )
-    project_way = input('Введите Y\n')
-    if project_way == 'Y':
-        project_way = getcwd()
-
-    project_name = input('Введите название проекта:\n')
-    return (project_name, project_way)
-
-
-def main():
-    project_name, project_way = get_proj_name()
-    if not create_folder(project_name, project_way):
-        print('Не удалось создать проект!')
-        if input('Попробовать снова? [Y / n]\n') == 'Y':
-            main()
-        else:
-            return False
-
-    # ! Создаем внутренности проекта
-    inner_way = join(project_way, project_name)
-    print(inner_way)
-    for folder in inner_folders:
-        create_folder(folder, inner_way)
-
-    # ! Создаем файлы внутри
-    sistem_files = ''
-    # * admin
-    if platform.startswith('win'):
-        create_file(
-            'git_push.bat',
-            inner_way,
-            create_gts_bat(inner_way)
-        )
-
-    # * MAIN Folder
-    create_file('.gitignore', inner_way, gitignore_file)
-    create_file('ReadMe.md', inner_way)
-    create_file('patch.txt', inner_way, patch_file)
-
-    return True
-
-
-if __name__ == '__main__':
-    main()

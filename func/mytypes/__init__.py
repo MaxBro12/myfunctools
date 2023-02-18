@@ -43,3 +43,8 @@ from .vectors import (
     dot2,
     dot3,
 )
+
+from .datacsv import (
+    Table,
+    create_csv,
+)
