@@ -1,62 +1,55 @@
 from typing import Union
 
+from math import degrees, acos
+
 
 # ? Вектор с 2мя координатами
 class Vec2:
     '''Удобный класс для работы с векторами'''
-    def __init__(self, x='0', y=0):
-        if type(x) == tuple or type(x) == list:
-            self.x = x[0]
-            self.y = x[1]
-        else:
-            self.x = int(x)
-            self.y = y
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
         self.__x_norm = 0
         self.__y_norm = 0
 
+    @property
     def length(self):
+        """Длинна вектора"""
         return (self.x ** 2 + self.y ** 2) ** 0.5
 
     @property
     def norm(self):
-        self.__x_norm = self.x / self.length()
-        self.__y_norm = self.y / self.length()
-        return self.__x_norm, self.__y_norm
+        """Возвращает нормализованный вектор"""
+        if self.length == 0:
+            return Vec2(self.__x_norm, self.__y_norm)
+        else:
+            self.__x_norm = self.x / self.length
+            self.__y_norm = self.y / self.length
+            return Vec2(self.__x_norm, self.__y_norm)
+
+    @property
+    def angle(self):
+        """Угол между текущим вектором и базовым вектором Vec2(1, 0)"""
+        return acos(dot2(self.norm, Vec2(1, 0)) / self.norm.length * 1) \
+            if self.length != 0 else 0
 
     def __add__(self, other):
-        if type(other) == Vec3:
-            return self.x + other.x, self.y + other.y
-        elif type(other) == tuple or type(other) == list:
-            return self.x + other[0], self.y + other[1]
-        else:
-            return self.x + other, self.y + other
+        return Vec2(self.x + other.x, self.y + other.y)
 
     def __sub__(self, other):
-        if type(other) == Vec3:
-            return self.x - other.x, self.y - other.y
-        elif type(other) == tuple or type(other) == list:
-            return self.x - other[0], self.y - other[1]
-        else:
-            return self.x - other, self.y - other
+        return Vec2(self.x - other.x, self.y - other.y)
 
     def __mul__(self, other):
-        if type(other) == Vec3:
-            return self.x * other.x, self.y * other.y
-        elif type(other) == tuple or type(other) == list:
-            return self.x * other[0], self.y * other[1]
-        else:
-            return self.x * other, self.y * other
+        if type(other) == Vec2:
+            return Vec2(self.x * other.x, self.y * other.y)
+        elif type(other) == Union[int, float]:
+            return Vec2(self.x * other, self.x * other)
 
     def __div__(self, other):
-        if type(other) == Vec3:
-            return self.x / other.x, self.y / other.y
-        elif type(other) == tuple or type(other) == list:
-            return self.x / other[0], self.y / other[1]
-        else:
-            return self.x / other, self.y / other
-
-    def __str__(self):
-        return self.x, self.y
+        if type(other) == Vec2:
+            return Vec2(self.x / other.x, self.y / other.y)
+        elif type(other) == Union[int, float]:
+            return Vec2(self.x / other, self.x / other)
 
 
 # ? Вектор с 3мя координатами
@@ -157,3 +150,10 @@ def dot2(a: Vec2, b: Vec2) -> Union[float, int]:
 def dot3(a: Vec3, b: Vec3) -> Union[float, int]:
     '''Возвращает скалярное произведение векторов'''
     return a.x * b.x + a.y * b.y + a.z * b.z
+
+
+# ? Функция расчета угла между 2мя векторами
+def abtv2(a: Vec2, b: Vec2) -> int:
+    """Расчитывает угол 2х векторов. Ответ в радианах!"""
+    a, b = a.norm, b.norm
+    return acos(dot2(a, b) / a.length * b.length)
