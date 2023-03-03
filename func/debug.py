@@ -1,4 +1,10 @@
 import logging
+from os import get_terminal_size
+
+
+def error_found(err):
+    print(f"{'=' * (get_terminal_size()[0] - 1)}\nError logged:\n{err}")
+    create_log_file(err)
 
 
 def create_log_file(err: Exception):
