@@ -51,6 +51,9 @@ class Vec2:
         elif type(other) == Union[int, float]:
             return Vec2(self.x / other, self.x / other)
 
+    def __getitem__(self, pos: int):
+        return (self.x, self.y)[pos]
+
 
 # ? Вектор с 3мя координатами
 class Vec3:
