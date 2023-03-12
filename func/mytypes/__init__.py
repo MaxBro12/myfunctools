@@ -44,6 +44,7 @@ from .vectors import (
     length3,
     dot2,
     dot3,
+    abtv2,
 )
 
 from .datacsv import (
@@ -86,6 +87,7 @@ __all__ = [
     length3,
     dot2,
     dot3,
+    abtv2,
     Table,
     create_csv,
 ]
