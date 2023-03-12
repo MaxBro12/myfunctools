@@ -16,11 +16,11 @@ from .mypylinux import (
 
 
 __all__ = [
-    get_os,
-    win_hide_file,
-    win_show_file,
-    win_wayfinder,
-    lin_hide_file,
-    lin_show_file,
-    lin_wayfinder,
+    "get_os",
+    "win_hide_file",
+    "win_show_file",
+    "win_wayfinder",
+    "lin_hide_file",
+    "lin_show_file",
+    "lin_wayfinder",
 ]

@@ -5,6 +5,6 @@ from .tomlreader import (
 
 
 __all__ = [
-    read,
-    write,
+    "read",
+    "write",
 ]

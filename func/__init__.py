@@ -9,12 +9,12 @@ from . import sockets
 
 
 __all__ = [
-    filemanage,
-    myconsolestyle,
-    myos,
-    mytypes,
-    tomlpack,
-    debug,
-    myexcept,
-    sockets,
+    "filemanage",
+    "myconsolestyle",
+    "myos",
+    "mytypes",
+    "tomlpack",
+    "debug",
+    "myexcept",
+    "sockets",
 ]

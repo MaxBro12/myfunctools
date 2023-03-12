@@ -12,10 +12,10 @@ from .progress import (
 
 
 __all__ = [
-    colors_bgr,
-    colors_front,
-    style_mods,
-    adt_style,
-    setst,
-    base_progress,
+    "colors_bgr",
+    "colors_front",
+    "style_mods",
+    "adt_style",
+    "setst",
+    "base_progress",
 ]
