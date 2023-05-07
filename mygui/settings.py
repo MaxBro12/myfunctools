@@ -1,10 +1,11 @@
-from typing import TypedDict, Literal
+from spec_types import AppConfig
 
 
-class AppConfig(TypedDict):
-    width: int
-    height: int
-    opacity: int
+base_config: AppConfig = {
+    'width': 400,
+    'height': 600,
+    'opacity': 1,
 
-    title: str
-    way_to_icon: str
+    'title': 'MyFunctools / MyGUI',
+    'way_to_icon': 'base_icon.ico',
+}

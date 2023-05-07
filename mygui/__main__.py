@@ -6,10 +6,12 @@ from PySide6.QtWidgets import (
 from gui import PyGui
 
 
+from settings import base_config
+
 
 def main():
     app = QApplication([])
-    widget = PyGui('test', None)
+    widget = PyGui(base_config, None)
     widget.show()
     exit(app.exec())
 

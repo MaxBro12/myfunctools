@@ -1,3 +1,5 @@
+PySide6
+
 loging
 numpy
 pandas

@@ -19,19 +19,20 @@ from settings import (
 from typing import Literal
 color_typed = Literal['red', 'blue', 'green']
 class Color(QWidget):
-    def __init__(self, color: color_typed, size: QSize):
+    def __init__(self, color: color_typed, size: QSize | None = None):
         super(Color, self).__init__()
         self.setAutoFillBackground(True)
 
         palette = self.palette()
         palette.setColor(QPalette.ColorRole.Window, QColor(color))
         self.setPalette(palette)
-        self.setFixedSize(size)
+
+        if size is not None:
+            self.setFixedSize(size)
 
 
-
-class PyGui(QMainWindow):
-    def __init__(self, config: AppConfig, central_widget: QWidget) -> None:
+class PyGui(QWidget):
+    def __init__(self, config: AppConfig, inner_widget: QWidget | None) -> None:
         super().__init__()
 
         # ! Вырубаем заголовок
@@ -40,6 +41,6 @@ class PyGui(QMainWindow):
 
         self.resize(QSize(400, 400))
 
-        self.setCentralWidget(central_widget)
+        self.widget = inner_widget
 
         self.test = Color('red', QSize(5, 5))
