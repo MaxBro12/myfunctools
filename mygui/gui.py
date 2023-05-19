@@ -44,3 +44,6 @@ class PyGui(QWidget):
         self.widget = inner_widget
 
         self.test = Color('red', QSize(5, 5))
+
+
+# https://www.youtube.com/watch?v=7DXxQV47jOU

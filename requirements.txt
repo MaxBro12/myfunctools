@@ -4,5 +4,6 @@ loging
 numpy
 pandas
 StringIO
+shutil
 toml
 socket
