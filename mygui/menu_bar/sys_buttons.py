@@ -8,3 +8,13 @@ from PySide6.QtWidgets import (
 class ButtonExit(QPushButton):
     def __init__(self):
         super().__init__()
+
+
+class ButtonHide(QPushButton):
+    def __init__(self):
+        super().__init__()
+
+
+class ButtonSize(QPushButton):
+    def __init__(self):
+        super().__init__()

@@ -13,7 +13,7 @@ In this project you will find:
 ---
 В пакет входят такие модули как / The package includes modules such as:
 
-- **DIR** - работа с файлами, их создание и обработка / working with files, their creation and processing
+- **FILEMANAGE** - работа с файлами, их создание и обработка / working with files, their creation and processing
 - **MyConsoleStyle** - пакет для кастомизации консоли / console customization package
 - **myos** - пакет для обработки операционных систем / operating system processing package
 - **MyTypes** - пакет с дополнительными методами, типами, классами / package with additional methods, types, classes
