@@ -15,6 +15,12 @@ from .simplefolders import (
 
 from .path import (
     pjoin,
+    is_file_fast,
+    is_file_slow,
+    wayfinder,
+    listdir_path,
+    pathfinder,
+    remove_dir_tree,
 )
 
 from .tomlreader import (
@@ -35,6 +41,12 @@ __all__ = [
     'delete_folder',
 
     'pjoin',
+    'is_file_fast',
+    'is_file_slow',
+    'wayfinder',
+    'listdir_path',
+    'pathfinder',
+    'remove_dir_tree',
 
     'read',
     'write',
