@@ -1,4 +1,4 @@
-from .base import MyThread
+from .mythread import MyThread
 
 
 __all__ = [
