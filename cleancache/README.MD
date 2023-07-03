@@ -5,6 +5,6 @@
 
 Вот пример:
 
-```cmd
+```zsh
 python3.11 cleancache .
 ```

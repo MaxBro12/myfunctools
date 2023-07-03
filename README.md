@@ -14,12 +14,13 @@ In this project you will find:
 В пакет входят такие модули как / The package includes modules such as:
 
 - **FILEMANAGE** - работа с файлами, их создание и обработка / working with files, their creation and processing
-- **MyConsoleStyle** - пакет для кастомизации консоли / console customization package
+- **MyConsoleStyle** - кастомизации консоли / console customization
 - **myos** - пакет для обработки операционных систем / operating system processing package
-- **MyTypes** - пакет с дополнительными методами, типами, классами / package with additional methods, types, classes
+- **mypymultithread** - реализация мультипоточности / multithreading implementation
+- **MyTypes** - дополнительными методами, типами, классами / additional methods, types, classes
 - **tomlpack** - работа с toml-файлами / working with toml files
-- **debug** - модуль содержащий функцию для логирования / module containing a function for logging
-- **myexcept** - модуль для работы своих собственных исключений / module for running your own exceptions
+- **debug** - логирования / logging
+- **myexcept** - собственные исключения / your own exceptions
 - **sockets** - модуль для работы с серверами / server module
 
 ## MYTERMINAL
@@ -65,3 +66,7 @@ python startproject G:\code\new_project
 
 Так же автоматически подключается git репозиторий.
 The git repository is also automatically connected.
+
+## CLEANCACHE
+
+Очищает проекты от скопившихся **\_\_pycache\_\_**

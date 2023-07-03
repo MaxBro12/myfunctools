@@ -4,6 +4,8 @@
 
 Сейчас реализованно лишь работа с модулем threading.
 
+Пример:
+
 ```python
 from func.mypymultithread import MyThread
 
