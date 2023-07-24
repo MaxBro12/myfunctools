@@ -13,8 +13,8 @@ def error_found(err):
 
 def create_log_file(
         log: Union[Exception, str],
-        log_file: str = 'logger.log',
-        levelname: Level = 'debug'
+        levelname: Level = 'debug',
+        log_file: str = 'logger.log'
 ):
     """Добавляем в log_file данные log с указанием типа уровня:
     - debug - дебаг
