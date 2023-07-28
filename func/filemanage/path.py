@@ -1,11 +1,27 @@
 from os import listdir, getcwd, remove, rmdir
-from os.path import join, exists, isfile, split
+from os.path import join, exists, isfile, split, abspath
 from typing import Tuple, List
+import sys
 
 
 def pjoin(*args: str) -> str:
     """Соединяет аргументы в путь до файла или папки"""
     return join(*args)
+
+
+def pjoin_r(*args: str) -> str:
+    """Соединяет аргументы в путь до файла или папки"""
+    return resource_path(join(*args))
+
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = abspath(".")
+    return join(base_path, relative_path)
 
 
 def is_file_fast(way_to_file: str) -> bool:

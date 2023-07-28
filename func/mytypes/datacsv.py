@@ -47,7 +47,7 @@ class Table:
     def add(self, pilot: str):
         if not self.find(pilot):
             self.data.loc[len(self.data)] = pilot
-            self.save_csv()
+            self.save()
             return True
         return False
 
@@ -56,10 +56,10 @@ class Table:
 
     def merge(self, other):
         self.data = concat([self.data, other.data])
-        self.save_csv()
+        self.save()
 
 
-def create_csv(name: str, inner_data: dict) -> bool:
+def create_csv(name: str, inner_data: dict):
     DataFrame([], columns=['pilot']).to_csv(name, index=False)
 
 
