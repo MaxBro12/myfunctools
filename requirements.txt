@@ -1,6 +1,7 @@
 PySide6
 
 loging
+dotenv
 numpy
 pandas
 StringIO
