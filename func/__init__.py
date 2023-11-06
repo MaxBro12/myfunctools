@@ -1,7 +1,7 @@
 from . import filemanage
 from . import myconsolestyle
 from . import myos
-from . import mytypes
+from . import spectypes
 from . import tomlpack
 from . import debug
 from . import myexcept
@@ -13,7 +13,7 @@ __all__ = [
     "filemanage",
     "myconsolestyle",
     "myos",
-    "mytypes",
+    "spectypes",
     "tomlpack",
     "debug",
     "myexcept",
