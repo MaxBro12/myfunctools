@@ -55,31 +55,35 @@ def listdir_path(where: str) -> list:
 
 
 def pathfinder(
-        where: str, ignore: tuple | list = ()
-) -> List[Tuple[str, bool]] | None:
-    """Составляет список файлов и папок найденый всех по пути where.
-    Отдельно модуль игнорирует файлы в списке ignore."""
-    try:
-        if wayfinder(where):
-            list_raw = listdir_path(where)
-            list_of_files = []
-            for i in list_raw:
-                if split(i)[1] not in ignore:
-                    if not is_file_slow(i):
-                        list_raw += listdir_path(i)
-                        list_of_files.append((i, False))
-                    else:
-                        list_of_files.append((i, True))
-            return list_of_files
-    except Exception as Err:
-        # create_log_file(Err, 'error')
-        print(Err)
+        way: str,
+        ignore: list|tuple = [],
+        append_folder_name: bool = False
+    ) -> list:
+    """Функция поиска любых директорий и файлов по пути way.
+    Входные параметры:
+        - way - путь где начать поиск
+        - ignore - список / кортеж какие файлы / директории стоит игнорировать
+        - append_folder_name - добавлять ли сами папки ввозвратный список
+    Возвращает:
+        Список файлов и директорий по пути
+    """
+    ans = []
+    files = [i for i in listdir(way) if i not in ignore]
+    for i in files:
+        i = pjoin(way, i)
+        if isfile(i):
+            ans.append(i)
+        else:
+            if append_folder_name:
+                ans.append(i)
+            ans.extend(pathfinder(i, ignore, append_folder_name))
+    return ans
 
 
 def remove_dir_tree(way_to_folder_name: str) -> bool:
     """Удаляет всю структуру из файлов и папок после пути"""
     try:
-        files = pathfinder(way_to_folder_name)
+        files = pathfinder(way_to_folder_name, append_folder_name=True)
         if files is not None:
             files = files[::-1]
             for i in files:
